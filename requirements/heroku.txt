@@ -18,10 +18,12 @@ Flask-Mail==0.9.1
 Flask-Migrate==4.0.4
 Flask-Moment==1.0.5
 Flask-PageDown==0.4.0
+Flask-Script==2.0.6
 Flask-SQLAlchemy==3.0.5
 Flask-SSLify==0.1.5
 Flask-WTF==1.1.1
 greenlet==2.0.2
+gunicorn==21.2.0
 httpie==3.2.2
 idna==3.4
 itsdangerous==2.1.2
@@ -34,6 +36,7 @@ mdurl==0.1.2
 multidict==6.0.4
 mysql-connector-python==8.1.0
 packaging==23.1
+pipdeptree==2.13.0
 protobuf==4.21.12
 psycopg2==2.9.8
 Pygments==2.16.1
