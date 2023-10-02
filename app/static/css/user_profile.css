@@ -1,0 +1,12 @@
+.user_page-header {
+    display: flex;
+    padding: 0;
+    min-height: 260px;
+}
+.profile-header {
+    margin-left: 40px;
+}
+.profile-header h1 {
+    margin-top: 0;
+}
+
