@@ -39,6 +39,7 @@ packaging==23.1
 pipdeptree==2.13.0
 protobuf==4.21.12
 psycopg2==2.9.8
+psycopg2-binary==2.9.8
 Pygments==2.16.1
 PyJWT==2.8.0
 PyMySQL==1.1.0
