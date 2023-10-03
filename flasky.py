@@ -10,7 +10,7 @@ from app.models import Role, User
 app = create_app(os.getenv('FLASK_CONFIG') or 'default')
 migrate = Migrate(app, db)
 
-#comment
+
 COV = None
 if os.environ.get('FLASK_COVERAGE'):
     import coverage
