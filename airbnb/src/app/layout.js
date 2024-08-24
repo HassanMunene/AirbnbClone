@@ -1,10 +1,11 @@
 import React from "react";
+import './globals.css';
 
-const RootLayout = () => {
+const RootLayout = ({children}) => {
   return (
     <html>
       <body>
-        <div>layout</div>
+        {children}
       </body>
     </html>
   )
