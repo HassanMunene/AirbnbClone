@@ -1,9 +1,26 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef } from "react";
 
 const ContextMenu = ({options, coordinates, contextMenu, setContextMenu}) => {
     const contextMenuRef = useRef(null);
+
+    const handleClick = (event, callback) => {
+        event.stopPropagation();
+        callback()
+    }
+
+    useEffect(() => {
+        const handleClickOutsideContextMenu = (event) => {
+            if (contextMenuRef.current && !contextMenuRef.current.contains(event.target)) {
+                setContextMenu(false);
+            }
+        }
+        document.addEventListener("click", handleClickOutsideContextMenu);
+        return () => {
+            document.removeEventListener("click", handleClickOutsideContextMenu);
+        }
+    }, [])
     return (
         <div
             ref={contextMenuRef}
@@ -15,8 +32,11 @@ const ContextMenu = ({options, coordinates, contextMenu, setContextMenu}) => {
             className="fixed bg-white shadow-2xl py-5 z-[100] rounded-lg border border-gray-200"
         >
             <ul>
-                {options.map(({name, callbackFunc}) => (
-                    <li className="hover:bg-gray-100 pl-5 pr-10 py-2 cursor-pointer" key={name}>
+                {options.map(({name, callback}) => (
+                    <li
+                    onClick={(event) => handleClick(event, callback)}
+                    className="hover:bg-gray-100 pl-5 pr-10 py-2 cursor-pointer" key={name}
+                    >
                         <span>{name}</span>
                     </li>
                 ))}
