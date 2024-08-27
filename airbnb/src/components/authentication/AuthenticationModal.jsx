@@ -3,6 +3,8 @@ import React, { useState } from "react";
 import {IoMdClose} from "react-icons/io";
 import FormInput from "../common/FormInput";
 import { useAirbnbStore } from "@/store/store";
+import { FaGithub } from "react-icons/fa";
+import { FcGoogle } from "react-icons/fc";
 
 const AuthenticationModal = () => {
 	const [email, setEmail] = useState("");
@@ -53,6 +55,38 @@ const AuthenticationModal = () => {
 									>
 										Continue
 									</button>
+								</div>
+								<div className="w-full p-5 font-medium text-xs">
+									<div 
+										className="flex items-center whitespace-nowrap before:content-[''] before:block before:w-full before:h-[1px] before:bg-gray-300 before:mr-4
+											after:content-[''] after:block after:w-full after:h-[1px] after:bg-gray-300 after:ml-4"
+									>
+										or
+									</div>
+								</div>
+								<div className="flex flex-wrap justify-between p-5">
+									<div className="w-full mb-4">
+										<button className="relative border border-[#222222] cursor-pointer text-center leading-[1.25rem] font-medium rounded-lg bg-white py-3.5 px-6 w-full">
+											<div className="flex items-center font-medium text-[0.85rem]">
+												<div className="flex-grow-0 flex-shrink basis-0">
+													<FaGithub className="block h-5 w-5"/>
+												</div>
+												<div className="flex-grow flex-shrink basis-0">Continue with Github</div>
+												<div className="flex-grow-0 flex-shrink basis-0"></div>
+											</div>
+										</button>
+									</div>
+									<div className="w-full mb-4">
+										<button className="relative border border-[#222222] cursor-pointer text-center leading-[1.25rem] font-medium rounded-lg bg-white py-3.5 px-6 w-full">
+											<div className="flex items-center font-medium text-[0.85rem]">
+												<div className="flex-grow-0 flex-shrink basis-0">
+													<FcGoogle className="block h-5 w-5"/>
+												</div>
+												<div className="flex-grow flex-shrink basis-0">Continue with Google</div>
+												<div className="flex-grow-0 flex-shrink basis-0"></div>
+											</div>
+										</button>
+									</div>
 								</div>
 							</div>
 						</div>
