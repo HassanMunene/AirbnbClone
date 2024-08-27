@@ -1,11 +1,15 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
+import { useAirbnbStore } from "@/store/store";
 
 const ContextMenu = ({options, coordinates, contextMenu, setContextMenu}) => {
     const contextMenuRef = useRef(null);
 
+    const openAuthModal = useAirbnbStore((state) => state.openAuthModal);
+
     const handleClick = (event, callback) => {
+        openAuthModal();
         event.stopPropagation();
         callback()
     }
