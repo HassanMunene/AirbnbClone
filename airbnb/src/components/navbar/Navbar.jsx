@@ -1,11 +1,11 @@
 "use client";
 
-import AirBnbLogo from "@/svg/airbnb-logo"
-import {FiGlobe} from "react-icons/fi";
-import {RxHamburgerMenu} from "react-icons/rx";
-import Image from "next/image";
+import Container from "../common/Container";
 import { useState } from "react";
 import ContextMenu from "@/components/common/ContextMenu";
+import Search from "./Search";
+import UserMenu from "./UserMenu";
+import Logo from "./Logo";
 
 const Navbar = () => {
     const [iscontextMenuVisible, setIscontextMenuVisible] = useState(false);
@@ -20,37 +20,15 @@ const Navbar = () => {
         setIscontextMenuVisible((prev) => !prev);
     }
     return (
-        <header className="w-full flex flex-col justify-center transition-all duration-300 h-20 border-b border-b-gray-200">
-            <div className="flex items-center justify-between px-20">
-                <div className="flex-grow basis-0">
-                    <div className="w-max cursor-pointer">
-                        <AirBnbLogo />
+        <div className="fixed w-full bg-white z-10 shadow-sm">
+            <div className="py-4 border-b-[1px]">
+                <Container>
+                    <div className="flex flex-row items-center justify-between gap-3 md:gap-0">
+                        <Logo />
+                        <Search />
+                        <UserMenu />
                     </div>
-                </div>
-                <div className="flex-grow basis-0">
-                    <ul className="flex items-center justify-end gap-6 font-medium">
-                        <li className="cursor-pointer">
-                            <span>Airbnb your home</span>
-                        </li>
-                        <li className="cursor-pointer">
-                            <FiGlobe />
-                        </li>
-                        <li 
-                            onClick={handleContextMenuState}
-                            className="flex cursor-pointer items-center gap-2 border border-gray-300 py-2 px-3 rounded-full hover:shadow-xl transition-all duration-500"
-                        >
-                            <RxHamburgerMenu />
-                            <span>
-                                <Image 
-                                    src="/empty-profile.png"
-                                    alt="empty profile"
-                                    height="30"
-                                    width="30"
-                                />
-                            </span>
-                        </li>
-                    </ul>
-                </div>
+                </Container>
             </div>
             {iscontextMenuVisible && (
                <ContextMenu
@@ -60,7 +38,7 @@ const Navbar = () => {
                     setContextMenu={setIscontextMenuVisible}
                 />
             )}
-        </header>
+        </div>
     )
 }
 
