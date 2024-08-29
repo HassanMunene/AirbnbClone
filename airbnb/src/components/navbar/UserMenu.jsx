@@ -1,8 +1,20 @@
 'use client';
+//contextMenu is the popUp that shows login, signup and other options
+
 import {RxHamburgerMenu} from "react-icons/rx";
 import Image from "next/image";
+import { useState } from "react";
+import MenuItem from "./MenuItem";
+import useRegisterModal from "@/app/hooks/useRegisterModal";
 
 const UserMenu = () => {
+    const [iscontextMenuVisible, setIscontextMenuVisible] = useState(false);
+    const registerModal = useRegisterModal();
+
+    const toggleContextMenu = () => {
+        setIscontextMenuVisible((prev) => !prev);
+    }
+
     return (
         <div className="relative">
             <div className="flex flex-row items-center gap-3">
@@ -13,7 +25,7 @@ const UserMenu = () => {
                     Airbnb your home
                 </div>
                 <div
-                    onClick={() => {}}
+                    onClick={toggleContextMenu}
                     className="p-4 md:py-1 md:px-2 border-[1px] border-neutral-200 flex flex-row items-center gap-3 rounded-full cursor-pointer hover:shadow-md transition"
                 >
                     <RxHamburgerMenu />
@@ -27,6 +39,16 @@ const UserMenu = () => {
                     </div>
                 </div>
             </div>
+            {iscontextMenuVisible && (
+                <div className="absolute bg-white right-0 top-12 rounded-xl shadow-md w-[40vw] md:w-3/4 overflow-hidden text-sm">
+                    <div className="flex flex-col cursor-pointer">
+                        <div>
+                            <MenuItem label="Login" onClick={() => {}}/>
+                            <MenuItem onClick={registerModal.onOpen} label="Sign up"/>
+                        </div>
+                    </div>
+                </div>
+            )}
         </div>
     )
 }
