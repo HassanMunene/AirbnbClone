@@ -15,7 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../common/Button";
 
-const BaseModal= ({isOpen, onClose, modalTitle, modalBody, disabled, mainLabel, secondaryLabel, secondarySubmit}) => {
+const BaseModal= ({isOpen, onClose, modalTitle, modalBody, onSubmit, disabled, primaryLabel, secondaryLabel, secondaryLabelSubmit}) => {
     const [showModal, setShowModal] = useState(isOpen);
 
     useEffect(() => {
@@ -37,7 +37,6 @@ const BaseModal= ({isOpen, onClose, modalTitle, modalBody, disabled, mainLabel, 
         return null;
     }
 
-    const handleSubmitModal = () => {}
     const handleSecondarySubmit = () => {}
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/70 overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
@@ -59,15 +58,15 @@ const BaseModal= ({isOpen, onClose, modalTitle, modalBody, disabled, mainLabel, 
                         <div className="flex flex-col gap p-6">
                             <div className="flex flex-row items-center gap-4 w-full">
                                 <Button
-                                    label={mainLabel}
-                                    onclick={handleSubmitModal}
+                                    label={primaryLabel}
+                                    onClick={onSubmit}
                                     disabled={disabled}
                                 />
-                                {secondaryLabel && secondarySubmit && (
+                                {secondaryLabel && secondaryLabelSubmit && (
                                     <Button
                                         disabled={disabled}
                                         label={secondaryLabel}
-                                        onclick={handleSecondarySubmit}
+                                        onClick={handleSecondarySubmit}
                                         outline={true}
                                     />
                                 )}
