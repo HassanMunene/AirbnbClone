@@ -15,7 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../common/Button";
 
-const BaseModal= ({isOpen, onClose, modalTitle, modalBody, onSubmit, disabled, primaryLabel, secondaryLabel, secondaryLabelSubmit}) => {
+const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, secondaryLabel, secondaryLabelSubmit, socialSigninSection, onClose, onSubmit,}) => {
     const [showModal, setShowModal] = useState(isOpen);
 
     useEffect(() => {
@@ -40,7 +40,7 @@ const BaseModal= ({isOpen, onClose, modalTitle, modalBody, onSubmit, disabled, p
     const handleSecondarySubmit = () => {}
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/70 overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-            <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-auto md:h-auto">
+            <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:4/5 md:h-4/5 overflow-y-auto rounded-lg">
                 <div className={`translate duration-300 h-full ${showModal ? 'translate-y-0' : 'translate-y-full'} ${showModal ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="relative flex flex-col translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg w-full bg-white outline-none focus:outline-none">
                         {/* Header part */}
@@ -71,6 +71,7 @@ const BaseModal= ({isOpen, onClose, modalTitle, modalBody, onSubmit, disabled, p
                                     />
                                 )}
                             </div>
+                            {socialSigninSection}
                         </div>
                     </div>
                 </div>

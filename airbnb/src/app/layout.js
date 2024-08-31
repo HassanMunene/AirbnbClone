@@ -1,8 +1,12 @@
+// Toaster is a component provided by react-host-toast to provides popup notifications
+// By adding it here im availing the Toaster to my entire application.
+
 import React from "react";
 import './globals.css';
 import {Inter} from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import RegisterModal from "@/components/modals/RegisterModal";
+import { Toaster } from "react-hot-toast";
 
 const inter = Inter(
   {subsets:["latin"]}
@@ -16,6 +20,7 @@ const RootLayout = ({children}) => {
   return (
     <html lang="en">
       <body className={inter.className}>
+        <Toaster />
         <RegisterModal />
         <Navbar />
         {children}

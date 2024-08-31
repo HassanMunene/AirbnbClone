@@ -12,6 +12,10 @@ import useRegisterModal from "@/app/hooks/useRegisterModal"
 import InputElement from "../common/InputElement";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import toast from "react-hot-toast";
+import Button from "../common/Button";
+import { FcGoogle } from "react-icons/fc";
+import { AiFillGithub } from "react-icons/ai";
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
@@ -33,6 +37,7 @@ const RegisterModal = () => {
 		})
 		.catch((error) => {
 			console.log(error);
+			toast.error("Something went wrong!")
 		})
 		.finally(() => {
 			setIsLoading(false);
@@ -72,15 +77,33 @@ const RegisterModal = () => {
 			/>
 		</div>
 	)
+	const socialSigninContent = (
+		<div className="flex flex-col gap-4 mt-3">
+			<hr />
+			<Button 
+				outline={true}
+				label="Continue with Google"
+				icon={FcGoogle}
+				onClick={() => {}}
+			/>
+			<Button 
+				outline={true}
+				label="Continue with Github"
+				icon={AiFillGithub}
+				onClick={() => {}}
+			/>
+		</div>
+	)
 	return (
 		<BaseModal 
 			disabled={isLoading}
 			isOpen={registerModal.isOpen}
 			modalTitle="Register"
+			modalBody={bodyContent}
 			primaryLabel="Continue"
+			socialSigninSection={socialSigninContent}
 			onClose={registerModal.onClose}
 			onSubmit={handleSubmit(onSubmit)}
-			modalBody={bodyContent}
 		/>
 	)
 }
