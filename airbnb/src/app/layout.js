@@ -7,6 +7,7 @@ import {Inter} from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import RegisterModal from "@/components/modals/RegisterModal";
 import { Toaster } from "react-hot-toast";
+import LoginModal from "@/components/modals/LoginModal";
 
 const inter = Inter(
   {subsets:["latin"]}
@@ -22,6 +23,7 @@ const RootLayout = ({children}) => {
       <body className={inter.className}>
         <Toaster />
         <RegisterModal />
+        <LoginModal />
         <Navbar />
         {children}
       </body>

@@ -6,10 +6,12 @@ import Image from "next/image";
 import { useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const UserMenu = () => {
     const [iscontextMenuVisible, setIscontextMenuVisible] = useState(false);
     const registerModal = useRegisterModal();
+    const loginModal = useLoginModal();
 
     const toggleContextMenu = () => {
         setIscontextMenuVisible((prev) => !prev);
@@ -43,7 +45,7 @@ const UserMenu = () => {
                 <div className="absolute bg-white right-0 top-12 rounded-xl shadow-md w-[40vw] md:w-3/4 overflow-hidden text-sm">
                     <div className="flex flex-col cursor-pointer">
                         <div>
-                            <MenuItem label="Login" onClick={() => {}}/>
+                            <MenuItem onClick={loginModal.onOpen} label="Login"/>
                             <MenuItem onClick={registerModal.onOpen} label="Sign up"/>
                         </div>
                     </div>

@@ -4,13 +4,14 @@
     2. When user wants to login using their Github account
     3. When user wants to login using their Google account
 */}
+import NextAuth from "next-auth/next";
 import prismaClient from "@/app/libs/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
 import bcrypt from "bcrypt";
-import NextAuth from "next-auth/next";
+
 
 
 export const authenticationOptions = {
@@ -40,7 +41,7 @@ export const authenticationOptions = {
                     }
                 })
                 if (!user || !user?.hashedPassword) {
-                    throw newError('Invalid credentials');
+                    throw new Error('Invalid credentials');
                 }
                 const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword);
                 if (!isCorrectPassword) {
@@ -51,7 +52,7 @@ export const authenticationOptions = {
         }),
     ],
     pages: {
-        signIn: '/'
+        signIn: '/',  // Custom sign-in page
     },
     debug: process.env.NODE_ENV === 'development',
     session: {
