@@ -6,7 +6,7 @@
 	https://www.freecodecamp.org/news/how-to-create-forms-in-react-using-react-hook-form/
 */}
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import BaseModal from "./BaseModal"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import useLoginModal from "@/app/hooks/useLoginModal";
@@ -52,6 +52,10 @@ const LoginModal = () => {
             toast.error(callback.error) //display error using a toaster
         }
 	}
+	const toggelModal = useCallback(() => {
+		loginModal.onClose();
+		registerModal.onOpen();
+	}, [loginModal, registerModal])
 
 	const bodyContent = (
 		<div className="flex flex-col gap-4">
@@ -93,6 +97,16 @@ const LoginModal = () => {
 				icon={AiFillGithub}
 				onClick={() => signIn('github')}
 			/>
+			<div className="text-neutral-600 text-center mt-4 font-medium text-sm">
+				<div className="flex flex-row items-center justify-center gap-2">
+					<div>First time using Airbnb clone?</div>
+					<div 
+						onClick={toggelModal}
+						className="text-neutral-800 cursor-pointer hover:underline">
+						Create an account
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 	return (

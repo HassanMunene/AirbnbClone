@@ -6,7 +6,7 @@
 	https://www.freecodecamp.org/news/how-to-create-forms-in-react-using-react-hook-form/
 */}
 
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import BaseModal from "./BaseModal"
 import useRegisterModal from "@/app/hooks/useRegisterModal"
 import InputElement from "../common/InputElement";
@@ -17,9 +17,11 @@ import Button from "../common/Button";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
 import { signIn } from "next-auth/react";
+import useLoginModal from "@/app/hooks/useLoginModal";
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
+	const loginModal = useLoginModal();
 	const [isLoading, setIsLoading] = useState(false);
 
 	const {register, handleSubmit, formState: {errors,}} = useForm({
@@ -44,6 +46,11 @@ const RegisterModal = () => {
 			setIsLoading(false);
 		})
 	}
+
+	const toggelModal = useCallback(() => {
+		registerModal.onClose();
+		loginModal.onOpen();
+	}, [loginModal, registerModal])
 
 	const bodyContent = (
 		<div className="flex flex-col gap-4">
@@ -93,6 +100,16 @@ const RegisterModal = () => {
 				icon={AiFillGithub}
 				onClick={() => signIn('github')}
 			/>
+			<div className="text-neutral-600 text-center mt-4 font-medium text-sm">
+				<div className="flex flex-row items-center justify-center gap-2">
+					<div>Already have an account?</div>
+					<div 
+						onClick={toggelModal}
+						className="text-neutral-800 cursor-pointer hover:underline">
+						Login
+					</div>
+				</div>
+			</div>
 		</div>
 	)
 	return (
