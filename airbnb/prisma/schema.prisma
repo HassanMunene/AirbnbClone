@@ -24,12 +24,12 @@ model User {
   updatedAt DateTime @updatedAt
   favoriteListingsIds String[] @db.ObjectId
 
-  socialAccounts socialAccount[]
+  accounts Account[]
   listings Listing[]
   reservations Reservation[]
 }
 
-model socialAccount {
+model Account {
   id String @id @default(auto()) @map("_id") @db.ObjectId
   userId String @db.ObjectId
   type String

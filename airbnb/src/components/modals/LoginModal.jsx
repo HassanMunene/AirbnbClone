@@ -34,7 +34,6 @@ const LoginModal = () => {
 
     // use async/await instead of .then chain
 	const onSubmit = async (data) => {
-		console.log('We are here');
 		setIsLoading(true);
         // login the user using the SignIn option from NextAuth
 
@@ -42,7 +41,6 @@ const LoginModal = () => {
             ...data,
             redirect: false,
         })
-		console.log(callback);
         setIsLoading(false);
 
         if (callback?.ok) {
@@ -87,13 +85,13 @@ const LoginModal = () => {
 				outline={true}
 				label="Continue with Google"
 				icon={FcGoogle}
-				onClick={() => {}}
+				onClick={() => signIn('google')}
 			/>
 			<Button 
 				outline={true}
 				label="Continue with Github"
 				icon={AiFillGithub}
-				onClick={() => {}}
+				onClick={() => signIn('github')}
 			/>
 		</div>
 	)

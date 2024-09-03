@@ -8,6 +8,7 @@ import Navbar from "@/components/navbar/Navbar";
 import RegisterModal from "@/components/modals/RegisterModal";
 import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
+import getCurrentUser from "./actions/getCurrentUser";
 
 const inter = Inter(
   {subsets:["latin"]}
@@ -17,14 +18,15 @@ export const metadata = {
   title: "Airbnb clone",
 }
 
-const RootLayout = ({children}) => {
+const RootLayout = async ({children}) => {
+  const currentUser = await getCurrentUser();
   return (
     <html lang="en">
       <body className={inter.className}>
         <Toaster />
         <RegisterModal />
         <LoginModal />
-        <Navbar />
+        <Navbar currentUser={currentUser}/>
         {children}
       </body>
     </html>

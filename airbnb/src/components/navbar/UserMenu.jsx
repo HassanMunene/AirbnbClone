@@ -7,8 +7,9 @@ import { useState } from "react";
 import MenuItem from "./MenuItem";
 import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
+import { signOut } from "next-auth/react";
 
-const UserMenu = () => {
+const UserMenu = ({ currentUser }) => {
     const [iscontextMenuVisible, setIscontextMenuVisible] = useState(false);
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -32,22 +33,44 @@ const UserMenu = () => {
                 >
                     <RxHamburgerMenu />
                     <div className="hidden md:block">
-                        <Image 
-                            src="/empty-profile.png"
-                            alt="empty profile"
-                            height="30"
-                            width="30"
-                        />
+                        {currentUser ? (
+                            <Image 
+                                src={currentUser.image}
+                                alt="profile"
+                                height="30"
+                                width="30"
+                                className="rounded-full"
+                            />
+                        ) : (
+                            <Image 
+                                src="/empty-profile.png"
+                                alt="profile"
+                                height="30"
+                                width="30"
+                                className="rounded-full"
+                            />
+                        )}
                     </div>
                 </div>
             </div>
             {iscontextMenuVisible && (
                 <div className="absolute bg-white right-0 top-12 rounded-xl shadow-md w-[40vw] md:w-3/4 overflow-hidden text-sm">
                     <div className="flex flex-col cursor-pointer">
-                        <div>
-                            <MenuItem onClick={loginModal.onOpen} label="Login"/>
-                            <MenuItem onClick={registerModal.onOpen} label="Sign up"/>
-                        </div>
+                        {currentUser ? (
+                            <>
+                                <MenuItem onClick={() => {}} label="My trips"/>
+                                <MenuItem onClick={() => {}} label="My favorites"/>
+                                <MenuItem onClick={() => {}} label="My reservations"/>
+                                <MenuItem onClick={() => {}} label="My properties"/>
+                                <MenuItem onClick={() => {}} label="Airbnb your home"/>
+                                <MenuItem onClick={() => signOut()} label="Logout"/>
+                            </>
+                        ) : (
+                            <>
+                                <MenuItem onClick={loginModal.onOpen} label="Login"/>
+                                <MenuItem onClick={registerModal.onOpen} label="Sign up"/>
+                            </>
+                        )}
                     </div>
                 </div>
             )}

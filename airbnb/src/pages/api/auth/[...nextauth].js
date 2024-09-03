@@ -5,8 +5,8 @@
     3. When user wants to login using their Google account
 */}
 import NextAuth from "next-auth/next";
-import prismaClient from "@/app/libs/prismadb";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prismaClient from "@/app/libs/prismadb";
 import GithubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -20,10 +20,12 @@ export const authenticationOptions = {
         GithubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
         }),
         GoogleProvider({
             clientId: process.env.GOOGLE_CLIENT_ID,
             clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
         }),
         CredentialsProvider({
             name: 'credentials',

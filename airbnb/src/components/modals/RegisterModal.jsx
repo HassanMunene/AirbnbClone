@@ -16,6 +16,7 @@ import toast from "react-hot-toast";
 import Button from "../common/Button";
 import { FcGoogle } from "react-icons/fc";
 import { AiFillGithub } from "react-icons/ai";
+import { signIn } from "next-auth/react";
 
 const RegisterModal = () => {
 	const registerModal = useRegisterModal();
@@ -84,13 +85,13 @@ const RegisterModal = () => {
 				outline={true}
 				label="Continue with Google"
 				icon={FcGoogle}
-				onClick={() => {}}
+				onClick={() => signIn('google')}
 			/>
 			<Button 
 				outline={true}
 				label="Continue with Github"
 				icon={AiFillGithub}
-				onClick={() => {}}
+				onClick={() => signIn('github')}
 			/>
 		</div>
 	)
