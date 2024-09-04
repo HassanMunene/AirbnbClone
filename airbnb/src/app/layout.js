@@ -9,6 +9,7 @@ import RegisterModal from "@/components/modals/RegisterModal";
 import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
+import CreateListingModal from "@/components/modals/CreateListingModal";
 
 const inter = Inter(
   {subsets:["latin"]}
@@ -26,6 +27,7 @@ const RootLayout = async ({children}) => {
         <Toaster />
         <RegisterModal />
         <LoginModal />
+        <CreateListingModal />
         <Navbar currentUser={currentUser}/>
         {children}
       </body>

@@ -15,7 +15,7 @@ import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
 import Button from "../common/Button";
 
-const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, secondaryLabel, secondaryLabelSubmit, socialSigninSection, onClose, onSubmit,}) => {
+const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, secondaryLabel, handleSecondaryLabelSubmit, socialSigninSection, onClose, onSubmit,}) => {
     const [showModal, setShowModal] = useState(isOpen);
 
     useEffect(() => {
@@ -37,10 +37,10 @@ const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, second
         return null;
     }
 
-    const handleSecondarySubmit = () => {}
     return (
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-neutral-800/70 overflow-x-hidden overflow-y-auto outline-none focus:outline-none">
-            <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:4/5 md:h-4/5 overflow-y-auto rounded-lg">
+            {/*This next div is the one I tinkered with in height and overflow for md size and higher*/}
+            <div className="relative w-full md:w-4/6 lg:w-3/6 xl:w-2/5 my-6 mx-auto h-full lg:h-[90%] md:h-[90%] overflow-y-auto rounded-lg">
                 <div className={`translate duration-300 h-full ${showModal ? 'translate-y-0' : 'translate-y-full'} ${showModal ? 'opacity-100' : 'opacity-0'}`}>
                     <div className="relative flex flex-col translate h-full lg:h-auto md:h-auto border-0 rounded-lg shadow-lg w-full bg-white outline-none focus:outline-none">
                         {/* Header part */}
@@ -62,11 +62,11 @@ const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, second
                                     onClick={onSubmit}
                                     disabled={disabled}
                                 />
-                                {secondaryLabel && secondaryLabelSubmit && (
+                                {secondaryLabel && handleSecondaryLabelSubmit && (
                                     <Button
                                         disabled={disabled}
                                         label={secondaryLabel}
-                                        onClick={handleSecondarySubmit}
+                                        onClick={handleSecondaryLabelSubmit}
                                         outline={true}
                                     />
                                 )}
