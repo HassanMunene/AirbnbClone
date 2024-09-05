@@ -10,6 +10,8 @@ import { categories } from "../navbar/Categories";
 import CategoryInputElement from "../common/CategoryInputElement";
 import { useForm } from "react-hook-form";
 import SelectCountryDropdown from "../common/SelectCountryDropdown";
+import dynamic from "next/dynamic";
+
 
 const STEPS = {
     CATEGORY: 0,
@@ -104,6 +106,10 @@ const CreateListingModal = () => {
         </div>
     )
 
+    //dynamically import the Map component reasons for this are written in my Airbnb clone book
+    const Map = useMemo(() => dynamic(() => import('../map/Map'), {ssr: false}), [locationValue])
+
+
     //body content when we are in step 1 choosing location
     if (step === STEPS.LOCATION) {
         bodyContent = (
@@ -116,6 +122,7 @@ const CreateListingModal = () => {
                     value={locationValue} 
                     onLocationChange={handleLocationChange}
                 />
+                <Map center={locationValue?.latlng}/>
             </div>
         )
     }

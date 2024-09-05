@@ -7,3 +7,11 @@ body,
 :root {
   height: 100%;
 }
+
+/* style the map component on create Listing modal to have a 0 z-index */
+.leaflet-bottom,
+.leaflet-control,
+.leaflet-pane,
+.leaflet-top {
+  z-index: 0 !important;
+}

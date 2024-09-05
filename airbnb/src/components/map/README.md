@@ -1,0 +1,1 @@
+This folder will contain the map component from OpenStreetMaps
