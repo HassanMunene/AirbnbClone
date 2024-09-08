@@ -57,11 +57,6 @@ const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, second
                         {/* Footer part */}
                         <div className="flex flex-col gap p-6">
                             <div className="flex flex-row items-center gap-4 w-full">
-                                <Button
-                                    label={primaryLabel}
-                                    onClick={onSubmit}
-                                    disabled={disabled}
-                                />
                                 {secondaryLabel && handleSecondaryLabelSubmit && (
                                     <Button
                                         disabled={disabled}
@@ -70,6 +65,11 @@ const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, second
                                         outline={true}
                                     />
                                 )}
+                                <Button
+                                    label={primaryLabel}
+                                    onClick={onSubmit}
+                                    disabled={disabled}
+                                />
                             </div>
                             {socialSigninSection}
                         </div>

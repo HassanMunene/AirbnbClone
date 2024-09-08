@@ -4,7 +4,7 @@
     We dont really need to make an API request anymore
 */}
 import { getServerSession } from "next-auth";
-import { authenticationOptions } from "@/pages/api/auth/[...nextauth]";
+import { authenticationOptions } from "../api/auth/[...nextauth]/route";
 import prismaClient from "../libs/prismadb";
 
 const getCurrentUser = async () => {

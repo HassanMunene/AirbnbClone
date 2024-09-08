@@ -1,23 +1,15 @@
-{/*
-    This file will define the following routes that will handle login of users
-    1. when user wants to login using their credentials email and password
-    2. When user wants to login using their Github account
-    3. When user wants to login using their Google account
-*/}
-import NextAuth from "next-auth/next";
+import NextAuth from "next-auth"
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import prismaClient from "@/app/libs/prismadb";
-import GithubProvider from "next-auth/providers/github";
+import GitHubProvider from "next-auth/providers/github";
 import GoogleProvider from "next-auth/providers/google";
-import CredentialsProvider from "next-auth/providers/credentials";
+import CredentialsProvider from "next-auth/providers/credentials"
 import bcrypt from "bcrypt";
-
-
 
 export const authenticationOptions = {
     adapter: PrismaAdapter(prismaClient),
     providers: [
-        GithubProvider({
+        GitHubProvider({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET,
             allowDangerousEmailAccountLinking: true,
@@ -34,6 +26,7 @@ export const authenticationOptions = {
                 password: {label: 'password', type: 'password'},
             },
             async authorize(credentials) {
+                console.log('yoo')
                 if (!credentials?.email || !credentials?.password) {
                     throw new Error('Invalid credentials');
                 }
@@ -63,4 +56,6 @@ export const authenticationOptions = {
     secret: process.env.NEXTAUTH_SECRET_KEY,
 }
 
-export default NextAuth(authenticationOptions);
+const handler = NextAuth(authenticationOptions)
+
+export { handler as GET, handler as POST }

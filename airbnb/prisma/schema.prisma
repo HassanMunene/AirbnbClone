@@ -18,7 +18,7 @@ model User {
   name String?
   email String? @unique
   emailVerified DateTime?
-  image String?
+  image String?    @default("https://as2.ftcdn.net/v2/jpg/03/32/59/65/1000_F_332596535_lAdLhf6KzbW6PWXBWeIFTovTii1drkbT.jpg")
   hashedPassword String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

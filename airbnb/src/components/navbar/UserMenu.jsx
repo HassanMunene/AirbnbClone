@@ -42,23 +42,13 @@ const UserMenu = ({ currentUser }) => {
                 >
                     <RxHamburgerMenu />
                     <div className="hidden md:block">
-                        {currentUser ? (
-                            <Image 
-                                src={currentUser.image}
-                                alt="profile"
-                                height="30"
-                                width="30"
-                                className="rounded-full"
-                            />
-                        ) : (
-                            <Image 
-                                src="/empty-profile.png"
-                                alt="profile"
-                                height="30"
-                                width="30"
-                                className="rounded-full"
-                            />
-                        )}
+                        <Image 
+                            src={currentUser?.image || "/empty-profile.png"} 
+                            alt="profile"
+                            height="30"
+                            width="30"
+                            className="rounded-full"
+                        />
                     </div>
                 </div>
             </div>

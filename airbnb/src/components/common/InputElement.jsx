@@ -4,7 +4,7 @@ const InputElement = ({id, label, type="text", disabled, register, errors, forma
     return (
         <div className="relative w-full">
             {formatPrice && (
-                <div className="absolute top-5 left-2 text-neutral-700">Ksh</div>
+                <div className="absolute top-6 left-2 text-neutral-700">sh</div>
             )}
             <input 
                 type={type}

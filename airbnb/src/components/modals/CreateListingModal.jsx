@@ -12,6 +12,11 @@ import { useForm } from "react-hook-form";
 import SelectCountryDropdown from "../common/SelectCountryDropdown";
 import dynamic from "next/dynamic";
 import AmenitiesCounter from "../common/AmenitiesCounter";
+import ImageUploadComponent from "../common/ImageUploadComponent";
+import InputElement from "../common/InputElement";
+import axios from "axios";
+import toast from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 
 const STEPS = {
@@ -26,10 +31,12 @@ const STEPS = {
 const CreateListingModal = () => {
     const createListingModal = useCreateListingModal();
     const [step, setStep] = useState(STEPS.CATEGORY);
+    const router = useRouter();
+    const [isLoading, setIsLoading] = useState(false);
     const {register, handleSubmit, setValue, watch, reset, formState: {errors}} = useForm({
         defaultValues: {
             category: '',
-            locationValue: '',
+            locationValue: null,
             guestCount: 1,
             roomCount: 1,
             bathroomCount: 1,
@@ -46,9 +53,10 @@ const CreateListingModal = () => {
     const guestCount = watch('guestCount');
     const roomCount = watch('roomCount');
     const bathroomCount = watch('bathroomCount');
+    const imageSrc = watch('imageSrc');
 
-    const allValues = watch();
-    console.log(allValues)
+    //const allValues = watch();
+    //console.log(allValues)
 
     //update and validate the value of a specific form field
     const handleCategoryChange = (categoryLabel) => {
@@ -165,6 +173,93 @@ const CreateListingModal = () => {
         )
     }
 
+    //body content when we are in step 3 adding an image for listing
+    if (step === STEPS.IMAGES) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <div className="text-start">
+                    <div className="font-bold text-2xl">Add a photo for your place</div>
+                    <div className="font-medium text-neutral-500 mt-2">Show your guests what your place looks like!</div>
+                </div>
+                <ImageUploadComponent 
+                    value={imageSrc} 
+                    onChange={(value) => setValue('imageSrc', value)}
+                />
+            </div>
+        )
+    }
+    
+    //body content when we are in step 4 of adding description
+    if (step === STEPS.DESCRIPTION) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <div className="text-start">
+                    <div className="font-bold text-2xl">How would you describe your place</div>
+                    <div className="font-medium text-neutral-500 mt-2">Short and Sweet works best</div>
+                </div>
+                <InputElement
+                    id="title"
+                    label="Title"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required={true} 
+                />
+                <InputElement
+                    id="description"
+                    label="Description"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required={true} 
+                />
+            </div>
+        )
+    }
+
+    //body content when we are in step 5 of setting the price
+    if (step === STEPS.PRICE) {
+        bodyContent = (
+            <div className="flex flex-col gap-8">
+                <div className="text-start">
+                    <div className="font-bold text-2xl">Now, set your price</div>
+                    <div className="font-medium text-neutral-500 mt-2">How much do you charge per night?</div>
+                </div>
+                <InputElement 
+                    id="price"
+                    label="Price"
+                    formatPrice={true}
+                    type="number"
+                    disabled={isLoading}
+                    register={register}
+                    errors={errors}
+                    required={true}
+                />
+            </div>
+        )
+    }
+
+    //handle submitting the listing
+    const onSubmit = (data) => {
+        if(step !== STEPS.PRICE) {
+            return goToNextStep();
+        }
+        setIsLoading(true);
+        axios.post('/api/listings', data).then(() => {
+            toast.success('Listing created successfully!');
+            router.refresh();
+            reset();
+            setStep(STEPS.CATEGORY);
+            createListingModal.onClose();
+        })
+        .catch((error) => {
+            console.log(error);
+            toast.error('Something went wrong!');
+        })
+        .finally(() => {
+            setIsLoading(false);
+        })
+    }
 
     return (
         <BaseModal
@@ -175,7 +270,7 @@ const CreateListingModal = () => {
             primaryLabel={primaryLabel}
             secondaryLabel={secondaryLabel}
             handleSecondaryLabelSubmit={step === STEPS.CATEGORY ? undefined : goToPreviousStep}
-            onSubmit={goToNextStep}
+            onSubmit={handleSubmit(onSubmit)}
         />
     )
 }
