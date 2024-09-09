@@ -3,10 +3,11 @@
 //This is the buttton that shows A heart on the listing display
 // user can click it to make it a favorite and vice-versa
 import { AiFillHeart, AiOutlineHeart } from "react-icons/ai";
+import useFavorite from "@/app/hooks/useFavorite";
 
 const HeartButton = ({listingId, currentUser}) => {
-    const hasBeenFavorited = false;
-    const toggleFavorite = () => {};
+    const { hasBeenFavorited, toggleFavorite } = useFavorite({listingId, currentUser});
+    console.log(hasBeenFavorited);
 
     return (
         <div
