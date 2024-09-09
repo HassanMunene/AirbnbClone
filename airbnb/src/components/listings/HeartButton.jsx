@@ -7,7 +7,6 @@ import useFavorite from "@/app/hooks/useFavorite";
 
 const HeartButton = ({listingId, currentUser}) => {
     const { hasBeenFavorited, toggleFavorite } = useFavorite({listingId, currentUser});
-    console.log(hasBeenFavorited);
 
     return (
         <div

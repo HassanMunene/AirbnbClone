@@ -22,7 +22,7 @@ export async function POST(request) {
     }
 
     // Create a copy of the user's favorite listings, or initialize it if it's undefined
-    let favoriteIds = [...(currentUser.favoriteIds || [])];
+    let favoriteIds = [...(currentUser.favoriteListingsIds || [])];
     
     // Add the new listingId to the list of favoriteIds
     favoriteIds.push(listingId);
@@ -42,12 +42,9 @@ export async function POST(request) {
 }
 
 // Asynchronous function to handle DELETE requests
-export async function DELETE(request) {
+export async function DELETE(request, { params }) {
     // Get the current user making the request
     const currentUser = await getCurrentUser();
-
-    // Parse the request body to extract the data being sent in the DELETE request
-    const body = await request.json();
 
     // If there's no logged-in user, return an error response
     if (!currentUser) {
@@ -55,7 +52,7 @@ export async function DELETE(request) {
     }
 
     // Destructure the listingId from the request body
-    const { listingId } = body;
+    const { listingId } = params;
 
     // Validate that a valid listingId is provided
     if (!listingId) {
@@ -63,7 +60,7 @@ export async function DELETE(request) {
     }
 
     // Create a copy of the user's favorite listings or initialize it if it's undefined
-    let favoriteIds = [...(currentUser.favoriteIds || [])];
+    let favoriteIds = [...(currentUser.favoriteListingsIds || [])];
     
     // Remove the specified listingId from the list of favoriteIds
     favoriteIds = favoriteIds.filter((id) => id !== listingId);
