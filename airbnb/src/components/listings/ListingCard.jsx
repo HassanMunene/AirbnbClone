@@ -22,6 +22,14 @@ const ListingCard = ({ data, reservation, onAction, disabled, actionLabel, actio
         onAction?.(actionId); // Call the onAction callback with actionId (e.g., reservation cancel)
     };
 
+    //generate price depending on where we are using the card
+    const price = useMemo(() => {
+        if (reservation) {
+            return reservation.totalPrice;
+        }
+        return data.price
+    }, [reservation, data.price])
+
     // Memoize the reservation dates to avoid unnecessary recalculations
     const reservationDate = useMemo(() => {
         if (!reservation) {
@@ -68,7 +76,7 @@ const ListingCard = ({ data, reservation, onAction, disabled, actionLabel, actio
 
                 {/* Price section */}
                 <div className="flex flex-row items-center gap-1">
-                    <div className="font-semibold">KSH {data.price}</div>
+                    <div className="font-semibold">KSH {price}</div>
                     {!reservation && (
                         <div className="font-light">night</div>
                     )}

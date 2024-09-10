@@ -9,8 +9,10 @@ import useRegisterModal from "@/app/hooks/useRegisterModal";
 import useLoginModal from "@/app/hooks/useLoginModal";
 import { signOut } from "next-auth/react";
 import useCreateListingModal from "@/app/hooks/useCreateListingModal";
+import { useRouter } from "next/navigation";
 
 const UserMenu = ({ currentUser }) => {
+    const router = useRouter();
     const [iscontextMenuVisible, setIscontextMenuVisible] = useState(false);
     const registerModal = useRegisterModal();
     const loginModal = useLoginModal();
@@ -57,7 +59,7 @@ const UserMenu = ({ currentUser }) => {
                     <div className="flex flex-col cursor-pointer">
                         {currentUser ? (
                             <>
-                                <MenuItem onClick={() => {}} label="My trips"/>
+                                <MenuItem onClick={() => router.push('/trips')} label="My trips"/>
                                 <MenuItem onClick={() => {}} label="My favorites"/>
                                 <MenuItem onClick={() => {}} label="My reservations"/>
                                 <MenuItem onClick={() => {}} label="My properties"/>

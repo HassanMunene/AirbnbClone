@@ -78,6 +78,9 @@ const ListingPageComponent = ({ listing, currentUser, reservations = [] }) => {
     
             // Reset the date range to its initial value after reservation
             setDateRange(initialDateRange);
+
+            // redirect user to trips page
+            router.push('/trips');
     
             // Refresh the page to show the updated reservation status
             router.refresh();
