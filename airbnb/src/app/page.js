@@ -4,8 +4,8 @@ import getListings from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import ListingCard from "@/components/listings/ListingCard";
 
-const Home = async () => {
-  const listings = await getListings();
+const Home = async ({ params }) => {
+  const listings = await getListings(params);
   const currentUser = await getCurrentUser();
 
   if(listings.length === 0) {

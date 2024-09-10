@@ -62,7 +62,7 @@ const UserMenu = ({ currentUser }) => {
                                 <MenuItem onClick={() => router.push('/trips')} label="My trips"/>
                                 <MenuItem onClick={() => router.push('/my_favorites')} label="My favorites"/>
                                 <MenuItem onClick={() => router.push('/my_reservations')} label="My reservations"/>
-                                <MenuItem onClick={() => {}} label="My properties"/>
+                                <MenuItem onClick={() => router.push('/my_properties')} label="My properties"/>
                                 <MenuItem onClick={handleAirbnbYourHomeClick} label="Airbnb your home"/>
                                 <MenuItem onClick={() => signOut()} label="Logout"/>
                             </>
