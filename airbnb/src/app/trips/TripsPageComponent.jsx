@@ -19,7 +19,8 @@ const TripsPageComponent = ({reservations, currentUser}) => {
             router.refresh();
         })
         .catch((error) => {
-            toast.error(error?.response?.data?.error);
+            console.log(error)
+            toast.error('Something went wrong');
         })
         .finally(() => {
             setDeletingId('');
