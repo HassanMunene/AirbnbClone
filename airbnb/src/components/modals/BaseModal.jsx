@@ -2,14 +2,24 @@
 // this is the base Modal from which all other modals will use as template
 // isOpen property is very important because it controls the visibility of the modal
 
-{/* This base modal receives a number of props but the main props I wanna talk about are 
-    1. mainLabel - signify that this button is the normal submit button
-    2. handleSubmitModal function - this func will be triggered by normal submit buttons
-    3. secondaryLabel - this signifies buttons such as 'Login with Google' kinda buttons
-    4. handleSecondarySubmit function - this func will handle submit from these secondary label buttons
-    5. the outline of these secondary buttons is always true to differentiate from main buttons
-*/}
-
+/**
+ * BaseModal component serves as a reusable modal template.
+ * It handles displaying a modal dialog with customizable content and actions.
+ *
+ * @param {Object} props - The properties passed to the modal component.
+ * @param {boolean} props.disabled - Indicates if the modal or its buttons should be disabled.
+ * @param {boolean} props.isOpen - Controls the visibility of the modal.
+ * @param {string} props.modalTitle - The title to display in the modal header.
+ * @param {JSX.Element} props.modalBody - The content to display in the modal body.
+ * @param {string} props.primaryLabel - The label for the primary submit button.
+ * @param {string} props.secondaryLabel - The label for the secondary button, if any.
+ * @param {Function} props.handleSecondaryLabelSubmit - Function to handle click events for secondary buttons.
+ * @param {JSX.Element} props.socialSigninSection - Optional section for social sign-in buttons.
+ * @param {Function} props.onClose - Function to be called when the modal is closed.
+ * @param {Function} props.onSubmit - Function to be called when the primary submit button is clicked.
+ * 
+ * @returns {JSX.Element|null} - Returns the modal JSX or null if `isOpen` is false.
+ */
 
 import { useCallback, useEffect, useState } from "react";
 import { IoMdClose } from "react-icons/io";
