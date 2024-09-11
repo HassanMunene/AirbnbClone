@@ -10,6 +10,7 @@ import { Toaster } from "react-hot-toast";
 import LoginModal from "@/components/modals/LoginModal";
 import getCurrentUser from "./actions/getCurrentUser";
 import CreateListingModal from "@/components/modals/CreateListingModal";
+import SearchModal from "@/components/modals/searchModal";
 
 const inter = Inter(
   {subsets:["latin"]}
@@ -29,6 +30,7 @@ const RootLayout = async ({children}) => {
         <LoginModal />
         <CreateListingModal />
         <Navbar currentUser={currentUser}/>
+        <SearchModal />
         <div className="pt-28 pb-20">
           {children}
         </div>
