@@ -1,7 +1,7 @@
 <div align="center">
    <h2>Airbnb clone </h2>
    <div>
-      <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
+      Live link - <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
    </div>
 </div>
 
