@@ -89,33 +89,20 @@ As of september 2024, these are the packages that I have in this application and
 └── zustand@4.5.5
 ```
 
+## ⚙️ Understanding the Application Structure
 
+This airbnb clone follows the Next.js **App Router** structure, with all major files located within the `src/` directory. Below is an overview of the key directories and their purposes.
+### Key Directories and Files:
 
+- **`/src/app/`**:
+  - Houses the routing logic using the **Next.js App Router**.
+  - Contains dynamic routing for pages like `listings/`, `profile/`, and more.
+  - Each folder represents a route, and `page.js` files represent the components rendered at each route.
+  - Includes layout components, which manage shared layouts like the navbar or footers.
 
+- **`/src/components/`**:
+  - Stores reusable UI components used across multiple pages.
+  - Examples:
+    - `Navbar.js`: Manages the navigation bar that appears throughout the app.
+    - `CreateListingModal.js`: A modal used for creating new property listings.
 
-
-
-
-
-
-
-
-
-## 🚀 Introduction
-This project is a clone of Airbnb, built using **Next.js App Router**, with authentication, listing management, and map integration features. The project is designed to demonstrate how to create a property listing application with a focus on full-stack development.
-
-### Features:
-- Property listing creation and management.
-- User authentication with credentials, Google, and GitHub (NextAuth).
-- Map integration using **React-Leaflet** for selecting and displaying property locations.
-- State management with **Zustand**.
-- Database management with **Prisma** and **MongoDB**.
-
----
-
-## 📦 Installation
-
-1. **Clone the repository:**
-   ```bash
-   git clone <repository-url>
-   cd airbnb-clone
