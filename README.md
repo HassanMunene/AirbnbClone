@@ -6,16 +6,18 @@
 </div>
 
 ## 🗺️ map 
-- [<code>📦 Installation</code>](#-installation)
-- [<code>🎮 Music management</code>](#-music-management)
-- [<code>🎧 Playlist management</code>](#-playlist-management)
-- [<code>🚦️ Controls</code>](#-controls)
-- [<code>⚙️ Configuration</code>](#-configuration)
-- [<code>💾 Cache</code>](#-cache)
-- [<code>🌐 Update</code>](#-update)
+- [<code>📦 Cloning the application</code>](#-cloning-the-application)
+- [<code>📦 Installing packages</code>](#-installing-packages)
+- [<code>⚙️ Understanding the application structure</code>](#-understanding-application-structure)
+- [<code>⚙️ Configuring .env file</code>](#-configuring-env)
+- [<code>⚙️ Database setup</code>](#-database-setup)
+- [<code>⚙️ Configuring NextAuth.js</code>](#-configuring-nextauth)
+- [<code>🚀 Running the application locally</code>](#-running-the-application-locally)
+- [<code>💾 Caching and Optimization</code>](#-caching-and-optimization)
+- [<code>🌐 Updating dependencies</code>](#-updating-dependencies)
+- [<code>📤 Deployment</code>](#-deployment)
 - [<code>📝 License</code>](#-license)
 - [<code>📢 Acknowledgments</code>](#-acknowledgments)
-
 ## 🚀 Introduction
 This project is a clone of Airbnb, built using **Next.js App Router**, with authentication, listing management, and map integration features. The project is designed to demonstrate how to create a property listing application with a focus on full-stack development.
 
