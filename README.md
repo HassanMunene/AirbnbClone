@@ -92,13 +92,71 @@ As of september 2024, these are the packages that I have in this application and
 ## ⚙️ Understanding the Application Structure
 
 This airbnb clone follows the Next.js **App Router** structure, with all major files located within the `src/` directory. Below is an overview of the key directories and their purposes.
+
 ### Key Directories and Files:
 
-- **`/src/app/`**:
-  - Houses the routing logic using the **Next.js App Router**.
-  - Contains dynamic routing for pages like `listings/`, `profile/`, and more.
-  - Each folder represents a route, and `page.js` files represent the components rendered at each route.
-  - Includes layout components, which manage shared layouts like the navbar or footers.
+### `/src/app/` Directory Breakdown:
+
+- **`/actions/`**:
+  - Contains functions for fetching data such as user, listings, and reservations.
+  - Example files:
+    - `getCurrentUser.js`: Fetches the current logged-in user.
+    - `getFavoriteListings.js`: Retrieves favorite listings for the user.
+    - `getListings.js`: Retrieves all available property listings depending on the parameters passed.
+
+- **`/api/`**:
+  - Houses API routes using the **Next.js App Router** for handling backend requests.
+  - Example structure:
+    - **`/auth/`**: Contains routes for handling authentication using NextAuth (e.g., `route.js` for login).
+    - **`/listings/`**: Handles CRUD operations for listings, including individual listing operations.
+    - **`/favorites/`**: API routes for handling favorite listings.
+    - **`/reservations/`**: API routes for managing user reservations.
+
+- **`/hooks/`**:
+  - Custom React hooks for reusing logic across components.
+  - Example hooks:
+    - `useCountries.js`: Hook for handling country selection.
+    - `useFavorite.js`: Hook for managing favorite listings.
+    - `useCreateListingModal.js`: Hook to control the create listing modal behavior.
+
+- **`/libs/`**:
+  - Contains libraries and utility functions.
+  - Example:
+    - `prismadb.js`: Sets up the connection to the Prisma database.
+
+- **`/listings/`**:
+  - Handles individual listing pages.
+  - Example files:
+    - `ListingPageComponent.jsx`: Component to display detailed information about a single listing.
+    - `page.jsx`: Renders the main listing page.
+
+- **`/my_favorites/`**:
+  - Handles the user’s favorite listings page.
+  - Example files:
+    - `FavoriteListingsPageComponent.jsx`: Component to display favorite listings.
+    - `page.jsx`: Entry point for the favorites page.
+
+- **`/my_properties/`**:
+  - Manages the user’s properties.
+  - Example files:
+    - `MyPropertiesPageComponent.jsx`: Displays a list of properties created by the user.
+    - `page.jsx`: Main entry for the properties page.
+
+- **`/my_reservations/`**:
+  - Manages the user’s reservations.
+  - Example files:
+    - `ReservationPageComponent.jsx`: Displays reservation details.
+    - `page.jsx`: Entry point for the reservations page.
+
+- **`/trips/`**:
+  - Manages the user’s trips.
+  - Example files:
+    - `TripsPageComponent.jsx`: Component to display a list of trips.
+    - `page.jsx`: Entry point for the trips page.tions.
+  - Example files:
+    - `getCurrentUser.js`: Fetches the current logged-in user.
+    - `getFavoriteListings.js`: Retrieves favorite listings for the user.
+    - `getListings.js`: Retrieves all available property listings.
 
 - **`/src/components/`**:
   - Stores reusable UI components used across multiple pages.
