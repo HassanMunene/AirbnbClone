@@ -99,7 +99,7 @@ const ListingPageComponent = ({ listing, currentUser, reservations = [] }) => {
     
     // Use the variables in the dependency array to ensure that the callback is only re-created
     // if any of them change (totalPrice, dateRange, listing?.id, router, currentUser, loginModal)
-    }, [totalPrice, dateRange, listing?.id, router, currentUser, loginModal]);
+    }, [totalPrice, dateRange, listing?.id, router, initialDateRange, currentUser, loginModal]);
 
     
     useEffect(() => {

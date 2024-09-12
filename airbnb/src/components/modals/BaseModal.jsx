@@ -41,7 +41,7 @@ const BaseModal= ({disabled, isOpen, modalTitle, modalBody, primaryLabel, second
         setTimeout(() => {
             onClose();
         }, 300)
-    }, [onClose])
+    }, [onClose, disabled])
 
     if (!isOpen) {
         return null;
