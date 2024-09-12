@@ -1,5 +1,5 @@
 <div align="center">
-   <img src="https://github.com/user-attachments/assets/387bfb1b-b56e-4bd8-9587-a3c29ef66976" alt="hi" style="width: 500px; height: 100px; object-fit: cover;"/>
+   <img src="https://github.com/user-attachments/assets/e01fe76b-c28a-4e0d-b6e0-93aeddff58ec" alt="hi"/>
    <div>
       Live link - <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
    </div>
