@@ -29,7 +29,7 @@ After cloning, move into the project directory using the `cd` command:
 ```sh
 cd airbnb_clone_app
 ```
-$${\color{#AC3097}Deleting \space \color{#56565E}airbnb_clone_app}$$
+$${\color{#AC3097}Deleting \space \color{#56565E}airbnb-clone-app}$$
 ```sh
 rm -rf airbnb_clone_app
 ```
