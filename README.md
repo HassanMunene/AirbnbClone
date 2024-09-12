@@ -1,5 +1,5 @@
 <div align="center">
-   ![airbnb2](https://github.com/user-attachments/assets/6e4aec39-c131-42ae-a459-bd820009d6a4)
+   <h2>Airbnb clone </h2>
    <div>
       <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
    </div>
