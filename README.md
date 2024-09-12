@@ -1,6 +1,7 @@
 # Airbnb Clone - Next.js (App Router)
 ## [https://airbnb-clone-app-mu.vercel.app/](https://airbnb-clone-app-mu.vercel.app/)
 
+![Screenshot from 2024-09-12 15-01-17](https://github.com/user-attachments/assets/91041f18-7404-4c81-a328-6a40b61e6678)
 
 
 ## 🚀 Introduction
