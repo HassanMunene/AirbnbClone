@@ -200,5 +200,29 @@ This airbnb clone follows the Next.js **App Router** structure, with all major f
 - **`airbnb-logo.jsx`**: Contains the SVG for the full Airbnb logo.
 - **`airbnb-logo-short.jsx`**: Contains the SVG for the short version of the Airbnb logo.
 
+## ⚙️ Configuring the `.env` File
+$${\color{#AC3097}configuring the \space \color{#56565E}.env file}$$ 
 
+To run this project, you need to configure environment variables. Create a `.env` file in the root directory of your project with the following structure:
+
+### Sample `.env` File:
+
+```bash
+DATABASE_URL="mongodb+srv://hassan:hassan@cluster0.h42mlqv.mongodb.net/airbnb"
+NODE_ENV="development"
+
+# GitHub OAuth
+GITHUB_CLIENT_ID="Ov23liiN4vXX20lkGFEW"
+GITHUB_CLIENT_SECRET="e07a1aa7da6dad7844b77937825b17bb44c696fa"
+
+# Google OAuth
+GOOGLE_CLIENT_ID="672245946884-42grddj6sqrvj6msdvco0d5tjv9e05pi.apps.googleusercontent.com"
+GOOGLE_CLIENT_SECRET="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"
+
+# NextAuth configuration
+NEXTAUTH_SECRET_KEY="myboybenzi"
+NEXTAUTH_URL="http://localhost:3000"
+
+# Cloudinary configuration
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="sultanhamud081"
 
