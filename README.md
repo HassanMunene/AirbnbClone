@@ -194,5 +194,11 @@ This airbnb clone follows the Next.js **App Router** structure, with all major f
   - Example:
     - `Navbar.jsx`: The main navigation bar.
     - `UserMenu.jsx`: Displays user options like profile or logout in the navbar.
+    - 
+### `/src/svg/` Directory:
+
+- **`airbnb-logo.jsx`**: Contains the SVG for the full Airbnb logo.
+- **`airbnb-logo-short.jsx`**: Contains the SVG for the short version of the Airbnb logo.
+
 
 
