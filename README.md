@@ -19,19 +19,19 @@
 - [<code>📝 License</code>](#-license)
 - [<code>📢 Acknowledgments</code>](#-acknowledgments)
 
-## 📦 Cloning the application
-$${\color{#AC3097}Install \space \color{#56565E}Retro}$$ 
-```sh
-wget https://github.com/Malwarize/retro/releases/download/v0.0.40/installer.tar.gz
-tar -xvf installer.tar.gz
-chmod +x installer.sh
-./installer.sh
-```
-this installer is for linux of `systemd` based systems, if you are using other systems you can install it manually by compiling the source code then run the server as you like.
 
-$${\color{#AC3097}Uninstall \space \color{#56565E}Retro}$$
+## 📦 Cloning the application
+$${\color{#AC3097}Clone \space \color{#56565E}airbnb_clone_app}$$ 
 ```sh
-~/.local/bin/uninstall_retro.sh
+git clone https://github.com/HassanMunene/airbnb_clone_app.git
+```
+After cloning, move into the project directory using the `cd` command:
+```sh
+cd airbnb_clone_app
+```
+$${\color{#AC3097}Deleting \space \color{#56565E}airbnb_clone_app}$$
+```sh
+rm -rf airbnb_clone_app
 ```
 ## 🚀 Introduction
 This project is a clone of Airbnb, built using **Next.js App Router**, with authentication, listing management, and map integration features. The project is designed to demonstrate how to create a property listing application with a focus on full-stack development.
