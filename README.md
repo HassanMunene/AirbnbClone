@@ -21,7 +21,7 @@
 
 
 ## 📦 Cloning the application
-$${\color{#AC3097}Clone \space \color{#56565E}airbnb/_clone/_app}$$ 
+$${\color{#AC3097}Clone \space \color{#56565E}airbnb-clone-app}$$ 
 ```sh
 git clone https://github.com/HassanMunene/airbnb_clone_app.git
 ```
