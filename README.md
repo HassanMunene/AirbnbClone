@@ -2,6 +2,13 @@
    <h2>Airbnb clone </h2>
    <div>
       Live link - <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
+
+      [![GitHub release](https://img.shields.io/github/v/release/Malwarize/retro?color=blue&label=release)]()
+      [![GitHub license](https://img.shields.io/github/license/Malwarize/retro?color=green)]()
+      [![GitHub issues](https://img.shields.io/github/issues/Malwarize/retro?color=red)]()
+      [![GitHub stars](https://img.shields.io/github/stars/Malwarize/retro?color=yellow)]()
+      [![GitHub forks](https://img.shields.io/github/forks/Malwarize/retro?color=orange)]()
+      [![GitHub watchers](https://img.shields.io/github/watchers/Malwarize/retro?color=blue)]()
    </div>
 </div>
 
