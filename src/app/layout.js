@@ -3,7 +3,7 @@
 
 import React from "react";
 import './globals.css';
-import {Inter} from "next/font/google";
+import {Inter, Nunito} from "next/font/google";
 import Navbar from "@/components/navbar/Navbar";
 import RegisterModal from "@/components/modals/RegisterModal";
 import { Toaster } from "react-hot-toast";
@@ -12,7 +12,7 @@ import getCurrentUser from "./actions/getCurrentUser";
 import CreateListingModal from "@/components/modals/CreateListingModal";
 import SearchModal from "@/components/modals/searchModal";
 
-const inter = Inter(
+const nunito = Nunito(
   {subsets:["latin"]}
 )
 
@@ -24,7 +24,7 @@ const RootLayout = async ({children}) => {
   const currentUser = await getCurrentUser();
   return (
     <html lang="en">
-      <body className={inter.className}>
+      <body className={nunito.className}>
         <Toaster />
         <RegisterModal />
         <LoginModal />
