@@ -201,7 +201,7 @@ This airbnb clone follows the Next.js **App Router** structure, with all major f
 - **`airbnb-logo-short.jsx`**: Contains the SVG for the short version of the Airbnb logo.
 
 ## ⚙️ Configuring the `.env` File
-$${\color{#AC3097}configuring \color{#AC3097}the \space \color{#56565E}.env \color{#AC3097}file}$$ 
+$${\color{#AC3097}configuring-the \space \color{#56565E}.env-file}$$ 
 
 To run this project, you need to configure environment variables. Create a `.env` file in the root directory of your project with the following structure:
 
