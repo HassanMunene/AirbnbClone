@@ -1,6 +1,8 @@
 <div align="center">
-   ![airbnb](https://github.com/user-attachments/assets/98f6be31-ed57-410f-b2b9-0eac86df8058)
 
+![airbnb png](https://github.com/user-attachments/assets/41c09831-da9a-456e-a114-a86d3d0a32eb)
+
+   
    <a href="https://airbnb-clone-app-mu.vercel.app/">https://airbnb-clone-app-mu.vercel.app/</a>
 </div>
 
