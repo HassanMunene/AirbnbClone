@@ -57,6 +57,38 @@ This will list all installed packages to verify that everything is properly inst
 ```sh
 npm list
 ```
+As of september 2024, these are the packages that I have in this application and their versions
+```sh
+── @next-auth/prisma-adapter@1.0.7
+├── @prisma/client@5.19.0
+├── @react-icons/all-files@4.1.0
+├── autoprefixer@10.4.20
+├── axios@1.7.5
+├── bcrypt@5.1.1
+├── date-fns@3.6.0
+├── eslint-config-next@14.2.6
+├── eslint@8.57.0
+├── leaflet@1.9.4
+├── next-auth@4.24.7
+├── next-cloudinary@6.12.0
+├── next@14.2.6
+├── postcss@8.4.41
+├── prisma@5.19.0
+├── query-string@9.1.0
+├── react-date-range@2.0.1
+├── react-dom@18.3.1
+├── react-hook-form@7.53.0
+├── react-hot-toast@2.4.1
+├── react-icons@5.3.0
+├── react-leaflet@4.2.1
+├── react-select@5.8.0
+├── react-spinners@0.14.1
+├── react@18.3.1
+├── sharp@0.33.5
+├── tailwindcss@3.4.10
+├── world-countries@5.0.0
+└── zustand@4.5.5
+```
 
 
 
