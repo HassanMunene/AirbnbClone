@@ -52,8 +52,7 @@ In case you face issues with specific packages, you can manually install them us
 ```sh
 npm install <package-name>
 ```
-<span style="color: #AC3097;">Verify the packages you have installed</span>
-
+$${\color{#AC3097}Verify \space \color{#56565E}packages}$$
 ```sh
 npm list
 ```
