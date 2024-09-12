@@ -8,6 +8,9 @@ const nextConfig = {
             'as2.ftcdn.net',
         ]
     },
+    experimental: {
+        missingSuspenseWithCSRBailout: false,
+    },
 };
 
 export default nextConfig;

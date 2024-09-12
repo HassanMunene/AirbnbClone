@@ -1,4 +1,4 @@
-// Import necessary functions and components
+export const dynamic = 'force-dynamic' 
 import getListings from "./actions/getListings";
 import getCurrentUser from "./actions/getCurrentUser";
 import EmptyListingsComponent from "@/components/listings/EmptyListingsComponent";
