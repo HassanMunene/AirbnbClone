@@ -33,6 +33,31 @@ $${\color{#AC3097}Deleting \space \color{#56565E}airbnb-clone-app}$$
 ```sh
 rm -rf airbnb_clone_app
 ```
+
+## 📦 Installing Packages
+After cloning the repository, the next step is to install the required dependencies.
+Ensure that you are in the project directory.
+
+$${\color{#AC3097}Installing \space \color{#56565E}command}$$
+```sh
+npm install
+```
+The command above will read the package.json file and install all the dependencies required by the project.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 ## 🚀 Introduction
 This project is a clone of Airbnb, built using **Next.js App Router**, with authentication, listing management, and map integration features. The project is designed to demonstrate how to create a property listing application with a focus on full-stack development.
 
