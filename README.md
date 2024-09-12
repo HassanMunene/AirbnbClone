@@ -43,8 +43,20 @@ $${\color{#AC3097}Installing \space \color{#56565E}command}$$
 npm install
 ```
 The command above will read the package.json file and install all the dependencies required by the project.
-
-
+If there are any issues during installation, make sure your Node.js version is up to date. You can check your version with:
+```sh
+node -v
+```
+The application typically works best with Node.js version 14.x or higher.
+In case you face issues with specific packages, you can manually install them using:
+```sh
+npm install <package-name>
+```
+$${\color{#AC3097}Verifying \space \color{#56565E}installations}$$
+This will list all installed packages to verify that everything is properly installed.
+```sh
+npm list
+```
 
 
 
