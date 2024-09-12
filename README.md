@@ -153,14 +153,46 @@ This airbnb clone follows the Next.js **App Router** structure, with all major f
   - Example files:
     - `TripsPageComponent.jsx`: Component to display a list of trips.
     - `page.jsx`: Entry point for the trips page.tions.
-  - Example files:
-    - `getCurrentUser.js`: Fetches the current logged-in user.
-    - `getFavoriteListings.js`: Retrieves favorite listings for the user.
-    - `getListings.js`: Retrieves all available property listings.
 
-- **`/src/components/`**:
-  - Stores reusable UI components used across multiple pages.
-  - Examples:
-    - `Navbar.js`: Manages the navigation bar that appears throughout the app.
-    - `CreateListingModal.js`: A modal used for creating new property listings.
+### Other Important Files:
+- **`layout.js`**: Manages the overall layout structure, such as the navbar and footer, applied across all pages.
+- **`page.jsx`**: The entry point for the homepage.
+- **`globals.css`**: Global CSS for the entire application.
+- **`loading.jsx`**: Loading state component that displays during data fetching.
+- **`error.jsx`**: Custom error handling component.
+- **`favicon.ico`**: Favicon for the application.
+
+
+### `/src/components/` Directory:
+
+- **`/common/`**:
+  - Reusable UI components that can be used across the app.
+  - Example components:
+    - `Button.jsx`: A general button component used throughout the app.
+    - `CategoryBox.jsx`: Displays category-related UI elements.
+    - `ImageUploadComponent.jsx`: Handles image uploads for listings.
+
+- **`/listings/`**:
+  - Components specifically related to listing functionalities.
+  - Example components:
+    - `ListingCard.jsx`: Displays an individual listing card.
+    - `ListingHead.jsx`: Displays the header for a listing page, including images and titles.
+
+- **`/map/`**:
+  - Contains map-related components.
+  - Example:
+    - `Map.jsx`: Handles the display and interaction with maps using Leaflet.
+
+- **`/modals/`**:
+  - Manages modal components used for various actions.
+  - Example:
+    - `CreateListingModal.jsx`: Modal for users to create new property listings.
+    - `LoginModal.jsx`: Modal for user login.
+
+- **`/navbar/`**:
+  - Components used in the navigation bar.
+  - Example:
+    - `Navbar.jsx`: The main navigation bar.
+    - `UserMenu.jsx`: Displays user options like profile or logout in the navbar.
+
 
