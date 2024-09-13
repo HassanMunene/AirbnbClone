@@ -297,7 +297,7 @@ With these steps, you’ll have NextAuth.js properly configured for authenticati
 
 
 
-## ⚙️ Understanding the Application Structure
+## ⚙️ Understanding the application structure
 
 This airbnb clone follows the Next.js **App Router** structure, with all major files located within the `src/` directory. Below is an overview of the key directories and their purposes.
 
