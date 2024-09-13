@@ -442,3 +442,67 @@ Ensure that your application is successfully connected to the MongoDB database b
 If there are any issues, check the .env file for correct database credentials.
 
 By following these steps, you will have the application running on your local machine for development. Make sure to test key features like authentication, listing creation, and reservations to verify everything is working as expected.
+
+
+## 📤 Deployment
+
+Once your application is ready for production, you can deploy it on platforms like **Vercel**, which works seamlessly with Next.js. Below are the steps to deploy the application.
+
+### Step 1: Setup Environment Variables on Vercel
+
+1. Go to your project settings in Vercel.
+2. Under the **Environment Variables** section, add the same environment variables from your local `.env` file, such as:
+   - `DATABASE_URL`
+   - `GITHUB_CLIENT_ID`
+   - `GITHUB_CLIENT_SECRET`
+   - `GOOGLE_CLIENT_ID`
+   - `GOOGLE_CLIENT_SECRET`
+   - `NEXTAUTH_SECRET_KEY`
+   - `NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME`
+
+### Step 2: Deploy to Vercel
+
+1. Push your code to GitHub (or any Git provider).
+2. Sign in to [Vercel](https://vercel.com/).
+3. Import your GitHub repository into Vercel.
+4. Vercel will automatically detect your Next.js project and provide the necessary settings for deployment.
+5. Click **Deploy**.
+
+### Step 3: Testing the Production Build
+
+Once deployed, your app will be live, and you can visit it using the production URL provided by Vercel. Verify that:
+- All routes are working as expected.
+- Authentication with Google and GitHub works.
+- Listings, reservations, and user data are properly fetched from MongoDB.
+
+By following these steps, you can easily deploy and manage your Airbnb clone on Vercel or any other platform of your choice.
+
+## 📝 License
+
+This project is licensed under the **MIT License**.
+
+You are free to use, modify, and distribute this software as long as the original copyright notice and this permission notice are included in all copies or substantial portions of the software.
+
+## 📢 Acknowledgments
+
+I would like to acknowledge the following resources and individuals for their contributions and support throughout the development of this project:
+
+- **Next.js** – for providing a robust framework to build this full-stack application. [Next.js Documentation](https://nextjs.org/docs)
+- **Prisma** – for simplifying database interactions with MongoDB. [Prisma Documentation](https://www.prisma.io/docs)
+- **MongoDB** – for offering a scalable and flexible database solution. [MongoDB Documentation](https://docs.mongodb.com/)
+- **NextAuth.js** – for handling authentication with ease. [NextAuth.js Documentation](https://next-auth.js.org/)
+- **Zustand** – for lightweight and efficient state management. [Zustand Documentation](https://zustand-demo.pmnd.rs/)
+- **React-Leaflet** – for providing map integration capabilities. [React-Leaflet Documentation](https://react-leaflet.js.org/)
+- **Cloudinary** – for image storage and management. [Cloudinary Documentation](https://cloudinary.com/documentation)
+- **My friends and family** – for their continuous encouragement and feedback throughout the project development.
+
+Special thanks to **[Antonio Erdeljac](https://github.com/AntonioErdeljac)** for guiding me through this process. He is a great tutor, and his mentorship played a significant role in shaping this project.
+
+---
+
+#### $${\color{#AC3097}airbnb-clone-app \space \color{#56565E}is \space  made  \space  by  \space  \color{#FF99EE} @HassanMunene \color{#56565E} \space with \space \color{red} ❤️}$$
+
+
+
+
+
