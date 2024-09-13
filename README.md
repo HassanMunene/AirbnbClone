@@ -9,12 +9,9 @@
 - [<code>📦 Cloning the application</code>](#-cloning-the-application)
 - [<code>📦 Installing packages</code>](#-installing-packages)
 - [<code>⚙️ Database setup</code>](#-database-setup)
-- [<code>⚙️ Understanding the application structure</code>](#-understanding-application-structure)
-- [<code>⚙️ Configuring .env file</code>](#-configuring-env)
 - [<code>⚙️ Configuring NextAuth.js</code>](#-configuring-nextauth)
+- [<code>⚙️ Understanding the application structure</code>](#-understanding-application-structure)
 - [<code>🚀 Running the application locally</code>](#-running-the-application-locally)
-- [<code>💾 Caching and Optimization</code>](#-caching-and-optimization)
-- [<code>🌐 Updating dependencies</code>](#-updating-dependencies)
 - [<code>📤 Deployment</code>](#-deployment)
 - [<code>📝 License</code>](#-license)
 - [<code>📢 Acknowledgments</code>](#-acknowledgments)
@@ -210,6 +207,94 @@ npx prisma generate
 This command will create the necessary Prisma client files in your node_modules/@prisma/client/ directory, allowing you to interact with your database in the application.
 
 
+## ⚙️ Configuring NextAuth.js
+
+This project uses **NextAuth.js** for handling authentication. NextAuth allows users to log in using credentials, Google, or GitHub. Follow the steps below to configure it properly.
+
+### Step 1: Install NextAuth.js
+
+when you installed packages it was one of the packages you installed so the only thing remaining is to set up the environment variable as oultined below
+```sh
+GITHUB_CLIENT_ID="your-github-client-id"
+GITHUB_CLIENT_SECRET="your-github-client-secret"
+
+GOOGLE_CLIENT_ID="your-google-client-id"
+GOOGLE_CLIENT_SECRET="your-google-client-secret"
+
+NEXTAUTH_SECRET_KEY="your-secret-key"
+NEXTAUTH_URL="http://localhost:3000"
+```
+These values will be used for GitHub and Google OAuth authentication.
+The following below is the API route we are using for authentication in this application
+```sh
+airbnb_clone_app/src/app/api/auth/[...nextauth]/route.js
+
+import NextAuth from "next-auth"
+import { PrismaAdapter } from "@next-auth/prisma-adapter";
+import prismaClient from "@/app/libs/prismadb";
+import GitHubProvider from "next-auth/providers/github";
+import GoogleProvider from "next-auth/providers/google";
+import CredentialsProvider from "next-auth/providers/credentials"
+import bcrypt from "bcrypt";
+
+export const authenticationOptions = {
+    adapter: PrismaAdapter(prismaClient),
+    providers: [
+        GitHubProvider({
+            clientId: process.env.GITHUB_CLIENT_ID,
+            clientSecret: process.env.GITHUB_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
+        }),
+        GoogleProvider({
+            clientId: process.env.GOOGLE_CLIENT_ID,
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            allowDangerousEmailAccountLinking: true,
+        }),
+        CredentialsProvider({
+            name: 'credentials',
+            credentials: {
+                email: {label: 'email', type: 'text'},
+                password: {label: 'password', type: 'password'},
+            },
+            async authorize(credentials) {
+                console.log('yoo')
+                if (!credentials?.email || !credentials?.password) {
+                    throw new Error('Invalid credentials');
+                }
+                const user = await prismaClient.user.findUnique({
+                    where: {
+                        email: credentials.email
+                    }
+                })
+                if (!user || !user?.hashedPassword) {
+                    throw new Error('Invalid credentials');
+                }
+                const isCorrectPassword = await bcrypt.compare(credentials.password, user.hashedPassword);
+                if (!isCorrectPassword) {
+                    throw new Error('Invalid credentials');
+                }
+                return user;
+            }
+        }),
+    ],
+    pages: {
+        signIn: '/',  // Custom sign-in page
+    },
+    debug: process.env.NODE_ENV === 'development',
+    session: {
+        strategy: "jwt",
+    },
+    secret: process.env.NEXTAUTH_SECRET_KEY,
+}
+
+const handler = NextAuth(authenticationOptions)
+
+export { handler as GET, handler as POST }
+
+```
+With these steps, you’ll have NextAuth.js properly configured for authentication in your app, including GitHub, Google, and credentials-based sign-ins.
+
+
 
 
 ## ⚙️ Understanding the Application Structure
@@ -323,36 +408,37 @@ This airbnb clone follows the Next.js **App Router** structure, with all major f
 - **`airbnb-logo.jsx`**: Contains the SVG for the full Airbnb logo.
 - **`airbnb-logo-short.jsx`**: Contains the SVG for the short version of the Airbnb logo.
 
-## ⚙️ Configuring the `.env` File
-$${\color{#AC3097}configuring-the \space \color{#56565E}.env-file}$$ 
 
-To run this project, you need to configure environment variables. Create a `.env` file in the root directory of your project with the following structure:
+## 🚀 Running the Application Locally
+Once you’ve configured your environment variables and set up the database, you’re ready to run the application locally. Follow the steps below:
 
-### Sample `.env` File:
+### Step 1: Ensure Dependencies are Installed
+
+Make sure that all necessary dependencies have been installed by running:
 
 ```bash
-DATABASE_URL="mongodb+srv://user:password@cluster0.h42mlqv.mongodb.net/db_name" // should be in this format to work with prisma
-NODE_ENV="development"
+npm install
+```
+This will install any missing packages listed in the package.json file.
 
-# GitHub OAuth
-GITHUB_CLIENT_ID="github client Id"
-GITHUB_CLIENT_SECRET="github secret id"
+### Step 2: Run the Development Server
+```sh
+npm run dev
+```
+This will start the application in development mode and allow hot-reloading as you make changes.
 
-# Google OAuth
-GOOGLE_CLIENT_ID="google client id"
-GOOGLE_CLIENT_SECRET="google secret id"
-
-# NextAuth configuration
-NEXTAUTH_SECRET_KEY="your own secret key"
-NEXTAUTH_URL="http://localhost:3000"
-
-# Cloudinary configuration
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your cloudinary name"
-
-If you dont know how to generate these keys you can google them and you will find good resources that will help you.
-The keys here mostly will be used in conjuction with Next-Auth to authenticate users using github and google.
-The purpose of cloudinary is to store images and other assets
+### Step 3: Access the application
+```sh
+http://localhost:3000
 ```
 
+### Step 4: Verify database connection
+Ensure that your application is successfully connected to the MongoDB database by verifying that you can perform actions like:
 
+    Registering a new user.
+    Creating a new listing.
+    Viewing existing listings.
 
+If there are any issues, check the .env file for correct database credentials.
+
+By following these steps, you will have the application running on your local machine for development. Make sure to test key features like authentication, listing creation, and reservations to verify everything is working as expected.
