@@ -208,21 +208,23 @@ To run this project, you need to configure environment variables. Create a `.env
 ### Sample `.env` File:
 
 ```bash
-DATABASE_URL="mongodb+srv://hassan:hassan@cluster0.h42mlqv.mongodb.net/airbnb"
+DATABASE_URL="mongodb+srv://user:password@cluster0.h42mlqv.mongodb.net/db_name" // should be in this format to work with prisma
 NODE_ENV="development"
 
 # GitHub OAuth
-GITHUB_CLIENT_ID="Ov23liiN4vXX20lkGFEW"
-GITHUB_CLIENT_SECRET="e07a1aa7da6dad7844b77937825b17bb44c696fa"
+GITHUB_CLIENT_ID="github client Id"
+GITHUB_CLIENT_SECRET="github secret id"
 
 # Google OAuth
-GOOGLE_CLIENT_ID="672245946884-42grddj6sqrvj6msdvco0d5tjv9e05pi.apps.googleusercontent.com"
-GOOGLE_CLIENT_SECRET="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"
+GOOGLE_CLIENT_ID="google client id"
+GOOGLE_CLIENT_SECRET="google secret id"
 
 # NextAuth configuration
-NEXTAUTH_SECRET_KEY="myboybenzi"
+NEXTAUTH_SECRET_KEY="your own secret key"
 NEXTAUTH_URL="http://localhost:3000"
 
 # Cloudinary configuration
-NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="sultanhamud081"
+NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your cloudinary name"
+
+
 
