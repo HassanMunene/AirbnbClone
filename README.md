@@ -8,9 +8,9 @@
 ## 🗺️ map 
 - [<code>📦 Cloning the application</code>](#-cloning-the-application)
 - [<code>📦 Installing packages</code>](#-installing-packages)
+- [<code>⚙️ Database setup</code>](#-database-setup)
 - [<code>⚙️ Understanding the application structure</code>](#-understanding-application-structure)
 - [<code>⚙️ Configuring .env file</code>](#-configuring-env)
-- [<code>⚙️ Database setup</code>](#-database-setup)
 - [<code>⚙️ Configuring NextAuth.js</code>](#-configuring-nextauth)
 - [<code>🚀 Running the application locally</code>](#-running-the-application-locally)
 - [<code>💾 Caching and Optimization</code>](#-caching-and-optimization)
@@ -88,6 +88,129 @@ As of september 2024, these are the packages that I have in this application and
 ├── world-countries@5.0.0
 └── zustand@4.5.5
 ```
+
+## ⚙️ Database Setup
+
+
+This project uses **Prisma** as the ORM and **MongoDB** as the database. Follow the steps below to set up your database and Prisma schema.
+
+### Step 1: Configure Prisma with MongoDB
+
+1. **Install Prisma and the Prisma MongoDB connector**:
+   If you haven't already installed Prisma, run the following commands:
+   ```bash
+   npm install prisma --save-dev
+   npm install @prisma/client
+   ```
+### Step 2: Initialize prisma
+run the following command
+```sh
+npx prisma init
+```
+This will create a prisma/ directory with a schema.prisma file and a .env file for the database URL. These files already exist in the project but I think
+its best you understand how they go there. 
+
+### Step 3: Update the DATABASE_URL in .env
+If you dont have a mongodb account, then you will have to create one because you will need it to store your data. You can follow a tutorial to see how to create
+one. 
+```sh
+DATABASE_URL="mongodb+srv://<username>:<password>@cluster0.mongodb.net/airbnb"
+```
+
+### Step 4: Define prisma schema
+These have already been defined in the application and this is how the file looks like
+```sh
+prisma/schema.prisma
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mongodb"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  name String?
+  email String? @unique
+  emailVerified DateTime?
+  image String?    @default("https://as2.ftcdn.net/v2/jpg/03/32/59/65/1000_F_332596535_lAdLhf6KzbW6PWXBWeIFTovTii1drkbT.jpg")
+  hashedPassword String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  favoriteListingsIds String[] @db.ObjectId
+
+  accounts Account[]
+  listings Listing[]
+  reservations Reservation[]
+}
+
+model Account {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  type String
+  provider String
+  providerAccountId String
+  refresh_token String? @db.String
+  access_token String? @db.String
+  expires_at Int?
+  token_type String?
+  scope String?
+  id_token String? @db.String
+  session_state String?
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  @@unique([provider, providerAccountId])
+}
+
+model Listing {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  title String
+  description String
+  imageSrc String
+  createdAt DateTime @default(now())
+  category String
+  roomCount Int
+  bathroomCount Int
+  guestCount Int
+  locationValue String
+  price Int
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+  reservations Reservation[]
+}
+
+model Reservation {
+  id String @id @default(auto()) @map("_id") @db.ObjectId
+  userId String @db.ObjectId
+  listingId String @db.ObjectId
+  startDate DateTime
+  endDate DateTime
+  totalPrice Int
+  createdAt DateTime @default(now())
+
+  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+}
+```
+### Step 5: Generate prisma client
+```sh
+npx prisma generate
+```
+This command will create the necessary Prisma client files in your node_modules/@prisma/client/ directory, allowing you to interact with your database in the application.
+
+
+
 
 ## ⚙️ Understanding the Application Structure
 
@@ -225,6 +348,11 @@ NEXTAUTH_URL="http://localhost:3000"
 
 # Cloudinary configuration
 NEXT_PUBLIC_CLOUDINARY_CLOUD_NAME="your cloudinary name"
+
+If you dont know how to generate these keys you can google them and you will find good resources that will help you.
+The keys here mostly will be used in conjuction with Next-Auth to authenticate users using github and google.
+The purpose of cloudinary is to store images and other assets
+```
 
 
 
