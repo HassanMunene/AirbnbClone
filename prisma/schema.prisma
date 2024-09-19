@@ -1,81 +1,94 @@
 // This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+// You can learn more about it in the Prisma documentation: https://pris.ly/d/prisma-schema
 
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+// If you're looking for ways to optimize query performance or scale serverless functions,
+// consider using Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+// Prisma Client generator, used to generate the Prisma client for database interaction.
 generator client {
-  provider = "prisma-client-js"
+  provider = "prisma-client-js" // Specifies that Prisma will generate a client using Prisma Client for JavaScript.
 }
 
+// Data source configuration.
+// Here, MongoDB is the database provider, and the connection URL is read from an environment variable.
 datasource db {
-  provider = "mongodb"
-  url      = env("DATABASE_URL")
+  provider = "mongodb"          // Indicates MongoDB as the database provider.
+  url      = env("DATABASE_URL") // The connection URL for the MongoDB database is stored in an environment variable.
 }
 
+// Defines the User model, representing users in the system.
 model User {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  name String?
-  email String? @unique
-  emailVerified DateTime?
-  image String?    @default("https://as2.ftcdn.net/v2/jpg/03/32/59/65/1000_F_332596535_lAdLhf6KzbW6PWXBWeIFTovTii1drkbT.jpg")
-  hashedPassword String?
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  favoriteListingsIds String[] @db.ObjectId
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId   // MongoDB ObjectId is the unique identifier for the user.
+  name               String?                                                  // Optional field to store the user's name.
+  email              String?   @unique                                        // Optional and unique field for the user's email address.
+  emailVerified      DateTime?                                                // Optional field indicating if and when the user's email was verified.
+  image              String?   @default("https://...")                        // Optional profile image URL with a default value.
+  hashedPassword     String?                                                  // Optional hashed password for secure user authentication.
+  createdAt          DateTime  @default(now())                                // Timestamp for when the user was created, defaults to the current time.
+  updatedAt          DateTime  @updatedAt                                     // Automatically updated timestamp for when the user data was last updated.
+  favoriteListingsIds String[] @db.ObjectId                                   // Array of ObjectId values representing the user's favorite listings.
 
-  accounts Account[]
-  listings Listing[]
-  reservations Reservation[]
+  // Relationships:
+  accounts           Account[]                                                // One-to-many relationship with the Account model.
+  listings           Listing[]                                                // One-to-many relationship with the Listing model.
+  reservations       Reservation[]                                            // One-to-many relationship with the Reservation model.
 }
 
+// Defines the Account model, representing different types of user accounts (e.g., social login).
 model Account {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  type String
-  provider String
-  providerAccountId String
-  refresh_token String? @db.String
-  access_token String? @db.String
-  expires_at Int?
-  token_type String?
-  scope String?
-  id_token String? @db.String
-  session_state String?
+  id                  String   @id @default(auto()) @map("_id") @db.ObjectId   // MongoDB ObjectId as the unique identifier for each account.
+  userId              String   @db.ObjectId                                    // Foreign key linking the account to a user.
+  type                String                                                   // Type of the account (e.g., "google", "facebook").
+  provider            String                                                   // Provider of the account (e.g., "google").
+  providerAccountId   String                                                   // Unique account ID assigned by the provider.
+  refresh_token       String?  @db.String                                      // Optional refresh token for account authentication.
+  access_token        String?  @db.String                                      // Optional access token for account authentication.
+  expires_at          Int?                                                     // Optional expiration time for the access token.
+  token_type          String?                                                  // Optional field to store the type of token (e.g., "bearer").
+  scope               String?                                                  // Optional field to store the scope of the token.
+  id_token            String?  @db.String                                      // Optional ID token for the account.
+  session_state       String?  @db.String                                      // Optional session state for the account.
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+  // Relationship:
+  user                User     @relation(fields: [userId], references: [id], onDelete: Cascade) // One-to-one relationship with the User model. Deleting a user cascades to their account.
 
+  // Unique constraint ensuring that the combination of provider and providerAccountId is unique.
   @@unique([provider, providerAccountId])
 }
 
+// Defines the Listing model, representing a property or rental listing.
 model Listing {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  title String
-  description String
-  imageSrc String
-  createdAt DateTime @default(now())
-  category String
-  roomCount Int
-  bathroomCount Int
-  guestCount Int
-  locationValue String
-  price Int
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId   // MongoDB ObjectId as the unique identifier for the listing.
+  userId             String   @db.ObjectId                                    // Foreign key linking the listing to a user.
+  title              String                                                   // Title of the listing.
+  description        String                                                   // Description of the listing.
+  imageSrc           String                                                   // URL of the listing's image.
+  createdAt          DateTime  @default(now())                                // Timestamp for when the listing was created, defaults to the current time.
+  category           String                                                   // Category of the listing (e.g., "apartment", "house").
+  roomCount          Int                                                      // Number of rooms in the listing.
+  bathroomCount      Int                                                      // Number of bathrooms in the listing.
+  guestCount         Int                                                      // Maximum number of guests allowed.
+  locationValue      String                                                   // Location information (e.g., address or coordinates).
+  price              Int                                                      // Price of the listing.
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  reservations Reservation[]
+  // Relationship:
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade) // One-to-one relationship with the User model. Deleting a user cascades to their listings.
+  
+  // One-to-many relationship with the Reservation model.
+  reservations       Reservation[]
 }
 
+// Defines the Reservation model, representing a reservation for a listing.
 model Reservation {
-  id String @id @default(auto()) @map("_id") @db.ObjectId
-  userId String @db.ObjectId
-  listingId String @db.ObjectId
-  startDate DateTime
-  endDate DateTime
-  totalPrice Int
-  createdAt DateTime @default(now())
+  id                 String   @id @default(auto()) @map("_id") @db.ObjectId   // MongoDB ObjectId as the unique identifier for the reservation.
+  userId             String   @db.ObjectId                                    // Foreign key linking the reservation to a user.
+  listingId          String   @db.ObjectId                                    // Foreign key linking the reservation to a listing.
+  startDate          DateTime                                                 // Start date of the reservation.
+  endDate            DateTime                                                 // End date of the reservation.
+  totalPrice         Int                                                      // Total price of the reservation.
+  createdAt          DateTime  @default(now())                                // Timestamp for when the reservation was created, defaults to the current time.
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  // Relationships:
+  user               User     @relation(fields: [userId], references: [id], onDelete: Cascade)  // One-to-one relationship with the User model. Deleting a user cascades to their reservations.
+  listing            Listing  @relation(fields: [listingId], references: [id], onDelete: Cascade) // One-to-one relationship with the Listing model. Deleting a listing cascades to its reservations.
 }
